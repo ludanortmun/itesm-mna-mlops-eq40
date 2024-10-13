@@ -1,2 +1,4 @@
 [core]
     autostage = true
+['remote "danielortega-local"']
+    url = C:\Users\danie\repos\tec\dvc-repo
