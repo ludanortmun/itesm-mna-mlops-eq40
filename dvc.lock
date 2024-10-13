@@ -1,10 +1,10 @@
 schema: '2.0'
 stages:
   load_data:
-    cmd: python mlops/load_data.py data/external/heart_failure_clinical_records_dataset.csv
+    cmd: python mlops/load_data.py data/raw/heart_failure_clinical_records_dataset.csv
       data/processed/train_test_data.csv
     deps:
-    - path: data/external/heart_failure_clinical_records_dataset.csv
+    - path: data/raw/heart_failure_clinical_records_dataset.csv
       hash: md5
       md5: c14aca77ab34e0727acebbde7a0e8ac1
       size: 12539

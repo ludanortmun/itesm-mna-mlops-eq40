@@ -1,9 +1,9 @@
 stages:
   load_data:
-    cmd: python mlops/load_data.py data/external/heart_failure_clinical_records_dataset.csv data/processed/train_test_data.csv
+    cmd: python mlops/load_data.py data/raw/heart_failure_clinical_records_dataset.csv data/processed/train_test_data.csv
     deps:
     - mlops/load_data.py
-    - data/external/heart_failure_clinical_records_dataset.csv
+    - data/raw/heart_failure_clinical_records_dataset.csv
     outs:
     - data/processed/train_test_data.csv
       
