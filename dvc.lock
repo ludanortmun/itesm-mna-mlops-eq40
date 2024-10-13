@@ -1,0 +1,88 @@
+schema: '2.0'
+stages:
+  load_data:
+    cmd: python mlops/load_data.py data/external/heart_failure_clinical_records_dataset.csv
+      data/processed/train_test_data.csv
+    deps:
+    - path: data/external/heart_failure_clinical_records_dataset.csv
+      hash: md5
+      md5: c14aca77ab34e0727acebbde7a0e8ac1
+      size: 12539
+    - path: mlops/load_data.py
+      hash: md5
+      md5: aaaf472cb9aa77b7bc82926bad85bcf6
+      size: 265
+    outs:
+    - path: data/processed/train_test_data.csv
+      hash: md5
+      md5: e8adddac5add6b339ebdf6ca62f634fa
+      size: 13793
+  preprocess:
+    cmd: python mlops/preprocess.py data/processed/train_test_data.csv data/processed/X_train.csv
+      data/processed/X_test.csv data/processed/y_train.csv data/processed/y_test.csv
+    deps:
+    - path: data/processed/train_test_data.csv
+      hash: md5
+      md5: e8adddac5add6b339ebdf6ca62f634fa
+      size: 13793
+    - path: mlops/preprocess.py
+      hash: md5
+      md5: bdddb92aad47f2943d74217799dfee71
+      size: 1502
+    outs:
+    - path: data/processed/X_test.csv
+      hash: md5
+      md5: 3ba8bcc073bbae08b9b3c80413892328
+      size: 10858
+    - path: data/processed/X_train.csv
+      hash: md5
+      md5: be4983ca52c77d5477c59a6cce32b6b0
+      size: 43177
+    - path: data/processed/y_test.csv
+      hash: md5
+      md5: 7f54cc134e44081d387bfb6dc9dbc321
+      size: 193
+    - path: data/processed/y_train.csv
+      hash: md5
+      md5: 8db873c0929dbfa478a6f9245521c2f0
+      size: 730
+  train:
+    cmd: python mlops/train_rf.py data/processed/X_train.csv data/processed/y_train.csv
+      models/model_rf.pkl
+    deps:
+    - path: data/processed/X_train.csv
+      hash: md5
+      md5: be4983ca52c77d5477c59a6cce32b6b0
+      size: 43177
+    - path: data/processed/y_train.csv
+      hash: md5
+      md5: 8db873c0929dbfa478a6f9245521c2f0
+      size: 730
+    - path: mlops/train_rf.py
+      hash: md5
+      md5: 61ace1eb69ca306a241436c77c9635dc
+      size: 1046
+    outs:
+    - path: models/model_rf.pkl
+      hash: md5
+      md5: 03fe407722cc5c42a59b6f1e801c937c
+      size: 1092745
+  evaluate:
+    cmd: python mlops/evaluate.py models/model_rf.pkl data/processed/X_test.csv data/processed/y_test.csv
+    deps:
+    - path: data/processed/X_test.csv
+      hash: md5
+      md5: 3ba8bcc073bbae08b9b3c80413892328
+      size: 10858
+    - path: data/processed/y_test.csv
+      hash: md5
+      md5: 7f54cc134e44081d387bfb6dc9dbc321
+      size: 193
+    - path: mlops/evaluate.py
+      hash: md5
+      md5: 8438749274f22332446b03da350a0a02
+      size: 627
+    - path: models/model_rf.pkl
+      hash: md5
+      md5: 03fe407722cc5c42a59b6f1e801c937c
+      size: 1092745
