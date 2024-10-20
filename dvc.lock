@@ -86,3 +86,76 @@ stages:
       hash: md5
       md5: 03fe407722cc5c42a59b6f1e801c937c
       size: 1092745
+  run_experiment_rf_cv:
+    cmd: python mlops/model_tracking/run_experiment.py --model_type random_forest
+      --x_train_path data/processed/X_train.csv --y_train_path data/processed/y_train.csv
+      --x_test_path data/processed/X_test.csv --y_test_path data/processed/y_test.csv
+      --params_path params/random_forest_cv.yaml --model_path models/model_rf_cv.pkl
+      --use_cv
+    deps:
+    - path: data/processed/X_test.csv
+      hash: md5
+      md5: 3ba8bcc073bbae08b9b3c80413892328
+      size: 10858
+    - path: data/processed/X_train.csv
+      hash: md5
+      md5: be4983ca52c77d5477c59a6cce32b6b0
+      size: 43177
+    - path: data/processed/y_test.csv
+      hash: md5
+      md5: 7f54cc134e44081d387bfb6dc9dbc321
+      size: 193
+    - path: data/processed/y_train.csv
+      hash: md5
+      md5: 8db873c0929dbfa478a6f9245521c2f0
+      size: 730
+    - path: mlops/model_tracking
+      hash: md5
+      md5: e46bf7cb8896f699f4444d69a7e4f967.dir
+      size: 7116
+      nfiles: 7
+    - path: params/random_forest_cv.yaml
+      hash: md5
+      md5: c874cb8a22f414397f97158866c4244a
+      size: 109
+    outs:
+    - path: models/model_rf_cv.pkl
+      hash: md5
+      md5: 7d1e55650014e21b4568ed3e3d1fc531
+      size: 4
+  run_experiment_rf:
+    cmd: python mlops/model_tracking/run_experiment.py --model_type random_forest
+      --x_train_path data/processed/X_train.csv --y_train_path data/processed/y_train.csv
+      --x_test_path data/processed/X_test.csv --y_test_path data/processed/y_test.csv
+      --params_path params/random_forest.yaml --model_path models/model_rf.pkl
+    deps:
+    - path: data/processed/X_test.csv
+      hash: md5
+      md5: 3ba8bcc073bbae08b9b3c80413892328
+      size: 10858
+    - path: data/processed/X_train.csv
+      hash: md5
+      md5: be4983ca52c77d5477c59a6cce32b6b0
+      size: 43177
+    - path: data/processed/y_test.csv
+      hash: md5
+      md5: 7f54cc134e44081d387bfb6dc9dbc321
+      size: 193
+    - path: data/processed/y_train.csv
+      hash: md5
+      md5: 8db873c0929dbfa478a6f9245521c2f0
+      size: 730
+    - path: mlops/model_tracking
+      hash: md5
+      md5: e46bf7cb8896f699f4444d69a7e4f967.dir
+      size: 7116
+      nfiles: 7
+    - path: params/random_forest.yaml
+      hash: md5
+      md5: b70a410369fcbf8a6359fa4e92e461c0
+      size: 57
+    outs:
+    - path: models/model_rf.pkl
+      hash: md5
+      md5: 7d1e55650014e21b4568ed3e3d1fc531
+      size: 4
