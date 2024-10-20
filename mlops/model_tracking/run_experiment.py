@@ -1,3 +1,16 @@
+from sklearn.linear_model import LogisticRegression
+from sklearn.svm import SVC
+
+def __parse_model_type(_model_type):
+    if _model_type == 'random_forest':
+        return RandomForestClassifier(random_state=42)
+    elif _model_type == 'logistic_regression':
+        return LogisticRegression(random_state=42)
+    elif _model_type == 'svm':
+        return SVC(random_state=42)
+    else:
+        raise ValueError('Invalid model type')
+
 import click
 import joblib
 import pandas as pd
