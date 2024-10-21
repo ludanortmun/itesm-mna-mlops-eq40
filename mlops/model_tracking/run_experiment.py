@@ -9,6 +9,8 @@ def __parse_model_type(_model_type):
         return LogisticRegression(random_state=42)
     elif _model_type == 'svm':
         return SVC(random_state=42)
+    elif _model_type == 'decision_tree':
+        return DecisionTreeClassifier(random_state=42)
     else:
         raise ValueError('Invalid model type')
 
