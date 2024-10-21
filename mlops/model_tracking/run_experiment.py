@@ -1,5 +1,6 @@
 from sklearn.linear_model import LogisticRegression
 from sklearn.svm import SVC
+from sklearn.tree import DecisionTreeClassifier
 
 def __parse_model_type(_model_type):
     if _model_type == 'random_forest':
@@ -23,6 +24,8 @@ from train_and_eval_experiment import train_and_eval_experiment
 def __parse_model_type(_model_type):
     if _model_type == 'random_forest':
         return RandomForestClassifier(random_state=42)
+    if _model_type == 'decision_tree':
+        return DecisionTreeClassifier(random_state=42)
     else:
         raise ValueError('Invalid model type')
 
