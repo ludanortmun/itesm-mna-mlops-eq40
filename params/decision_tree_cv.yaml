@@ -1,0 +1,8 @@
+max_depth:
+- 8
+- 16
+- 32
+min_samples_split:
+- 5
+- 10
+- 15

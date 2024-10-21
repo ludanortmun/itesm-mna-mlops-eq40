@@ -41,3 +41,27 @@ stages:
       - data/processed/y_test.csv
     outs:
       - models/model_rf_cv.pkl
+
+  run_experiment_dt:
+    cmd: python mlops/model_tracking/run_experiment.py --model_type decision_tree --x_train_path data/processed/X_train.csv --y_train_path data/processed/y_train.csv --x_test_path data/processed/X_test.csv --y_test_path data/processed/y_test.csv --params_path params/decision_tree.yaml --model_path models/model_rf.pkl
+    deps:
+      - params/decision_tree.yaml
+      - mlops/model_tracking
+      - data/processed/X_train.csv
+      - data/processed/y_train.csv
+      - data/processed/X_test.csv
+      - data/processed/y_test.csv
+    outs:
+      - models/model_rf.pkl
+
+  run_experiment_dt_cv:
+    cmd: python mlops/model_tracking/run_experiment.py --model_type decision_tree --x_train_path data/processed/X_train.csv --y_train_path data/processed/y_train.csv --x_test_path data/processed/X_test.csv --y_test_path data/processed/y_test.csv --params_path params/decision_tree_cv.yaml --model_path models/model_rf_cv.pkl --use_cv
+    deps:
+      - params/decision_tree_cv.yaml
+      - mlops/model_tracking
+      - data/processed/X_train.csv
+      - data/processed/y_train.csv
+      - data/processed/X_test.csv
+      - data/processed/y_test.csv
+    outs:
+      - models/model_rf_cv.pkl
