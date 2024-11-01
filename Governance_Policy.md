@@ -1,58 +1,106 @@
 
-# Governance Policy
+# Governance Policy for Heart Failure Prediction Project
 
-Este documento describe las políticas de gobernanza y prácticas de buenas prácticas aplicadas en el proyecto de Machine Learning para el análisis de insuficiencia cardíaca, abarcando Model Governance, estándares de código y consideraciones éticas.
+## 1. Introduction
 
-## 1. Model Governance (Gobernanza del Modelo)
-
-En este proyecto, implementamos **MLflow** como herramienta de seguimiento y trazabilidad de modelos de Machine Learning. Esto permite centralizar el control de versiones, parámetros, métricas y artefactos, garantizando la reproducibilidad y calidad en cada etapa del ciclo de vida del modelo.
-
-### Configuración de MLflow
-La configuración de **MLflow** está diseñada para registrar los detalles de cada experimento, de modo que sea posible rastrear las decisiones y ajustes realizados en el modelo. Estos son los aspectos específicos configurados en MLflow:
-
-1. **Tracking URI**: Configuramos el Tracking URI para centralizar el seguimiento de experimentos y facilitar el almacenamiento de parámetros y métricas en un solo lugar.
-2. **Registro de Parámetros**: Documentamos cada parámetro utilizado en los modelos, incluyendo configuraciones de hiperparámetros para modelos como la Regresión Logística y SVM.
-3. **Métricas de Rendimiento**: Se registra la precisión, precisión (precision) y recall del modelo para cada experimento, proporcionando un análisis detallado de su rendimiento.
-4. **Artefactos**: Guardamos la matriz de confusión generada en cada ejecución como un artefacto. Esto facilita la interpretación visual del rendimiento y permite detectar posibles sesgos en las predicciones.
-
-#### Ejemplo de Parámetros y Métricas
-- **Tipo de modelo**: Regresión Logística, SVM.
-- **Parámetros de hiperparámetros**: `C`, `solver` para regresión logística y `kernel` para SVM.
-- **Métricas**: Accuracy (precisión), precision, recall.
-
-La implementación de MLflow permite mantener una trazabilidad exhaustiva de cada experimento, asegurando que todas las versiones y cambios realizados en el modelo estén registrados.
+Este documento detalla las políticas de gobernanza aplicadas al proyecto de predicción de supervivencia en pacientes con insuficiencia cardíaca. Estas prácticas aseguran la calidad, seguridad, y trazabilidad del modelo, promoviendo la reproducibilidad, la adherencia a regulaciones y la ética en el uso de datos clínicos.
 
 ---
 
-## 2. Estándares de Código
+## 2. Code Standards and Practices
 
-Para asegurar la calidad, mantenibilidad y claridad en el desarrollo del código del proyecto, se siguen los siguientes estándares:
+Para garantizar la legibilidad, consistencia y mantenibilidad del código, se aplican los siguientes estándares:
 
-- **Convención de nombres descriptivos**: Cada variable y función tiene un nombre claro y descriptivo que indica su propósito.
-- **Modularidad**: El pipeline de entrenamiento y evaluación se organiza en módulos, cada uno responsable de una fase específica (preprocesamiento, entrenamiento, evaluación). Esto facilita el mantenimiento y permite realizar cambios de manera aislada sin afectar el resto del código.
-- **Documentación y comentarios**: Cada función cuenta con un docstring que describe su funcionamiento, parámetros y salida esperada. Los pasos clave del código también tienen comentarios para guiar a otros desarrolladores o usuarios.
+- **PEP8**: Todas las funciones, variables y clases deben cumplir con el estándar de estilo de código PEP8 para Python.
+- **Nombres Consistentes**:
+   - Funciones: `snake_case` (e.g., `load_data()`).
+   - Clases: `PascalCase` (e.g., `RandomForestModel`).
+   - Variables: `snake_case` para nombres descriptivos y claros.
+- **Comentarios y Documentación**:
+   - Cada función debe incluir un docstring que describa su propósito, parámetros y resultados.
+   - Las clases deben tener docstrings que expliquen su funcionalidad general y los métodos principales.
 
----
-
-## 3. Verificación Ética y de Riesgo
-
-Considerando la naturaleza sensible de los datos clínicos, implementamos prácticas de gobernanza ética para reducir posibles sesgos y asegurar la equidad del modelo.
-
-### Evaluación de Sesgo
-Para reducir el riesgo de sesgo en el modelo, se realizó un análisis de los datos de entrada para identificar si existían patrones o desbalances significativos en las variables demográficas, como `age` y `sex`. Estos resultados fueron observados en relación con la variable objetivo **DEATH_EVENT**.
-
-- **Resultados**: Observamos que algunas variables pueden tener correlaciones con el evento de muerte, como la fracción de eyección y el nivel de creatinina sérica.
-- **Acciones**: Basándonos en estos resultados, se implementó un proceso de análisis de la matriz de confusión para evaluar el rendimiento del modelo en diferentes subgrupos, asegurando una consistencia en su precisión y minimizando el sesgo.
-
-### Consideraciones Éticas
-El proyecto implementa una política de transparencia en el análisis y el preprocesamiento de los datos. Cualquier transformación aplicada a los datos es documentada y verificada para asegurar que no se introduzcan sesgos innecesarios que puedan afectar la imparcialidad del modelo.
+### Verificación
+- Antes de cada commit, se ejecutará una verificación de estilo de código usando `flake8` para asegurar la adherencia a los estándares definidos.
 
 ---
 
-## 4. Conclusión
+## 3. Ethical and Risk Assessment
 
-Las prácticas de gobernanza implementadas en este proyecto, como el uso de MLflow para Model Governance, los estándares de código, y la verificación ética, aseguran que el modelo sea trazable, reproducible y justo. Estas políticas contribuyen a que el proyecto cumpla con los estándares de calidad y regulaciones aplicables, mejorando la confiabilidad del modelo en contextos clínicos o de salud.
+La construcción y el uso de este modelo pueden tener implicaciones éticas y de riesgo, especialmente en el contexto clínico. A continuación se detallan los lineamientos éticos y de evaluación de riesgos que se deben considerar.
+
+### 3.1 Evaluación Ética
+- **Impacto en Pacientes**: Este modelo se utiliza como soporte para la toma de decisiones clínicas, y sus predicciones deben interpretarse como complementarias a la evaluación médica y no como conclusiones definitivas.
+- **Sesgo del Modelo**: Revisar y mitigar posibles sesgos que puedan surgir en las predicciones, especialmente relacionados con factores como edad y condiciones preexistentes.
+- **Responsabilidad en la Interpretación**: El modelo no reemplaza la valoración clínica. Las decisiones médicas deben ser tomadas por profesionales de la salud.
+
+### 3.2 Evaluación de Riesgos
+- **Riesgo de Error en la Predicción**: Implementar métricas de rendimiento (como F1-score, precisión, y recall) que sean adecuadas para evaluar el balance entre precisión y sensibilidad, reduciendo la probabilidad de errores significativos.
+- **Auditoría Regular**: El rendimiento del modelo debe auditarse regularmente para verificar que sigue siendo adecuado y consistente. Los datos de entrenamiento deben actualizarse cada seis meses si se incorpora en producción.
+
+### 3.3 Políticas de Transparencia
+- Documentar los experimentos y versiones del modelo en `MLflow`, asegurando la trazabilidad de cada cambio y justificación de ajustes en el pipeline.
 
 ---
 
-**Última actualización:** [Fecha actual]
+## 4. Security and Compliance Policies
+
+Dado que el modelo utiliza datos clínicos, se han implementado políticas para asegurar el cumplimiento de regulaciones y la protección de la privacidad de los datos.
+
+### 4.1 Cumplimiento de GDPR/HIPAA
+- **Minimización de Datos**: Solo se almacenan y procesan los datos estrictamente necesarios para el entrenamiento y evaluación del modelo.
+- **Anonimización**: Los datos personales deben estar anonimizados. Cualquier dato identificable debe ser eliminado antes de ser utilizado en el pipeline.
+
+### 4.2 Protección de Datos
+- **Acceso Controlado**: El acceso a los datos está restringido solo a personal autorizado. Los datos se almacenan en servidores seguros con acceso controlado.
+- **Cifrado**: Los datos sensibles se almacenan en repositorios cifrados cuando es aplicable.
+- **Logs de Acceso**: Registrar los accesos a los datos y experimentos en MLflow, de manera que cualquier acceso inapropiado pueda ser detectado y auditado.
+
+---
+
+## 5. Version Control Policies
+
+Para asegurar la reproducibilidad y trazabilidad de los modelos y datos utilizados, aplicamos las siguientes políticas de control de versiones.
+
+### 5.1 Datos y Modelos
+- **Data Version Control (DVC)**: Se utiliza DVC para versionar tanto los datos como los modelos generados en cada iteración, permitiendo revertir cambios y recuperar versiones anteriores.
+- **Versiones del Modelo en MLflow**: Cada entrenamiento y ajuste se registra en MLflow, guardando los parámetros, métricas y artefactos del modelo (como la matriz de confusión), facilitando la comparación entre diferentes versiones.
+
+### 5.2 Parámetros y Configuraciones
+- **Archivos de Configuración**: Los parámetros e hiperparámetros del modelo se guardan en archivos `.yaml` versionados en Git, asegurando que cada ajuste quede registrado.
+
+### 5.3 Documentación de Experimentos
+- **Archivo `experiments_log.md`**: Cada experimento importante queda documentado, incluyendo cambios en hiperparámetros y los resultados obtenidos.
+
+---
+
+## 6. Quality Assurance (QA) and Testing
+
+Para asegurar la calidad del modelo y de cada componente del pipeline, se han implementado pruebas unitarias y de integración.
+
+### 6.1 Pruebas Unitarias
+- **Pruebas de Componentes**: Cada función del pipeline tiene pruebas unitarias en `pytest` que validan su funcionamiento.
+- **Pruebas de Datos**: Validación de rangos y formatos de los datos para asegurar consistencia antes del entrenamiento.
+- **Pruebas de Rendimiento del Modelo**: Validación del rendimiento mínimo del modelo en métricas clave (precisión, F1-score) antes de despliegue.
+
+### 6.2 Reporte de Pruebas
+- Los resultados de las pruebas se documentan en `testing_report.md`, incluyendo métricas de rendimiento y observaciones sobre el funcionamiento de cada componente.
+
+---
+
+## 7. Reproducibility and Automation Policies
+
+### 7.1 Pipeline Automatizado
+- **Makefile o `train_pipeline.py`**: Se utiliza un archivo `Makefile` o `train_pipeline.py` que automatiza cada etapa del pipeline, desde la preparación de datos hasta la evaluación del modelo.
+
+### 7.2 Documentación de Experimentos
+- **MLflow**: Registro de experimentos y métricas en MLflow para asegurar la trazabilidad y transparencia de cada etapa.
+- **Archivo `experiments_log.md`**: Documento donde se resumen los experimentos y se registran cambios y resultados clave, facilitando su replicación.
+
+### 7.3 Control de Versiones de Parámetros
+- **Archivo `config.yaml`**: Cada versión de los hiperparámetros se almacena y versiona en `config.yaml`, asegurando la consistencia de los experimentos.
+
+---
+
+**Conclusión:**
+Estas políticas de gobernanza y estándares de seguridad, pruebas y reproducibilidad garantizan que el modelo de predicción de insuficiencia cardíaca cumpla con altos estándares de calidad, seguridad y transparencia, alineándose con las mejores prácticas de MLOps en la industria.
