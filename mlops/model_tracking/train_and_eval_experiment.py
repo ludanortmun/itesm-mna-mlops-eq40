@@ -1,9 +1,9 @@
 import mlflow
 from matplotlib import pyplot as plt
-from sklearn.metrics import accuracy_score, precision_score, recall_score, confusion_matrix, ConfusionMatrixDisplay
+from sklearn.metrics import ConfusionMatrixDisplay, confusion_matrix, accuracy_score, precision_score, recall_score
 from sklearn.model_selection import GridSearchCV
 
-mlflow.set_tracking_uri("http://localhost:5000")
+mlflow.set_tracking_uri("http://13.93.214.226:5000")
 mlflow.set_experiment("Heart_Failure")
 
 def _train(model, params, x_train, y_train):
