@@ -86,6 +86,18 @@ def test_evaluate_svm():
     print(f"Accuracy: {accuracy}, Precision: {precision}, Recall: {recall}")
     return accuracy, precision, recall
 
+def test_evaluate_model():
+    accuracy, precision, recall = test_evaluate_lower_recall_threshold()
+    assert recall >= 0.55, "Recall is below threshold"
+    accuracy, precision, recall = test_evaluate_with_hyperparameter_tuning()
+    assert recall >= 0.55, "Recall is below threshold"
+    accuracy, precision, recall = test_evaluate_svm()
+    assert recall >= 0.55, "Recall is below threshold"
+    assert accuracy >= 0.8, "Accuracy is below threshold"
+    assert precision >= 0.8, "Precision is below threshold"
+    print("All tests passed successfully.")
+
+
 # Ejecutar las pruebas
 print("Probando con umbral de recall reducido:")
 test_evaluate_lower_recall_threshold()
@@ -93,4 +105,6 @@ print("Probando con ajuste de hiperparámetros:")
 test_evaluate_with_hyperparameter_tuning()
 print("Probando con modelo SVM:")
 test_evaluate_svm()
+print("Probando con todas las opciones:")
+test_evaluate_model()
 print("Todas las pruebas se ejecutaron.")
