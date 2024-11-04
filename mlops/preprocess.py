@@ -29,6 +29,13 @@ def split(x, y):
     return train_test_split(x, y, test_size=0.2, random_state=42)
 
 
+def run_preprocessing_pipeline(data_path):
+    X, y = load(data_path)
+    X = preprocess(X)
+    x_train, x_test, y_train, y_test = split(X, y)
+    return x_train, x_test, y_train, y_test
+
+
 if __name__ == '__main__':
     data_path = sys.argv[1]
     output_train_features = sys.argv[2]
@@ -36,9 +43,7 @@ if __name__ == '__main__':
     output_train_target = sys.argv[4]
     output_test_target = sys.argv[5]
 
-    X, y = load(data_path)
-    X = preprocess(X)
-    x_train, x_test, y_train, y_test = split(X, y)
+    x_train, x_test, y_train, y_test = run_preprocessing_pipeline(data_path)
 
     pd.DataFrame(x_train).to_csv(output_train_features, index=False)
     pd.DataFrame(x_test).to_csv(output_test_features, index=False)

@@ -20,9 +20,6 @@ Para garantizar la legibilidad, consistencia y mantenibilidad del código, se ap
    - Cada función debe incluir un docstring que describa su propósito, parámetros y resultados.
    - Las clases deben tener docstrings que expliquen su funcionalidad general y los métodos principales.
 
-### Verificación
-- Antes de cada commit, se ejecutará una verificación de estilo de código usando `flake8` para asegurar la adherencia a los estándares definidos.
-
 ---
 
 ## 3. Ethical and Risk Assessment
@@ -69,9 +66,6 @@ Para asegurar la reproducibilidad y trazabilidad de los modelos y datos utilizad
 ### 5.2 Parámetros y Configuraciones
 - **Archivos de Configuración**: Los parámetros e hiperparámetros del modelo se guardan en archivos `.yaml` versionados en Git, asegurando que cada ajuste quede registrado.
 
-### 5.3 Documentación de Experimentos
-- **Archivo `experiments_log.md`**: Cada experimento importante queda documentado, incluyendo cambios en hiperparámetros y los resultados obtenidos.
-
 ---
 
 ## 6. Quality Assurance (QA) and Testing
@@ -84,21 +78,20 @@ Para asegurar la calidad del modelo y de cada componente del pipeline, se han im
 - **Pruebas de Rendimiento del Modelo**: Validación del rendimiento mínimo del modelo en métricas clave (precisión, F1-score) antes de despliegue.
 
 ### 6.2 Reporte de Pruebas
-- Los resultados de las pruebas se documentan en `testing_report.md`, incluyendo métricas de rendimiento y observaciones sobre el funcionamiento de cada componente.
+- Los resultados de las pruebas unitarias se documentan en `unit_testing_report.md`.
 
 ---
 
 ## 7. Reproducibility and Automation Policies
 
 ### 7.1 Pipeline Automatizado
-- **Makefile o `train_pipeline.py`**: Se utiliza un archivo `Makefile` o `train_pipeline.py` que automatiza cada etapa del pipeline, desde la preparación de datos hasta la evaluación del modelo.
+- **`dvc.yaml`**: Se utiliza un archivo `dvc.yaml` que automatiza cada etapa del pipeline, desde la preparación de datos hasta la evaluación del modelo.
 
 ### 7.2 Documentación de Experimentos
 - **MLflow**: Registro de experimentos y métricas en MLflow para asegurar la trazabilidad y transparencia de cada etapa.
-- **Archivo `experiments_log.md`**: Documento donde se resumen los experimentos y se registran cambios y resultados clave, facilitando su replicación.
 
 ### 7.3 Control de Versiones de Parámetros
-- **Archivo `config.yaml`**: Cada versión de los hiperparámetros se almacena y versiona en `config.yaml`, asegurando la consistencia de los experimentos.
+- **Archivos `params/[model].yaml`**: Cada versión de los hiperparámetros se almacena y versiona en su correspondiente archivo de parámetros para el modelo, asegurando la consistencia de los experimentos. Estos archivos son versionados en Git, por lo que existe un historial de cambios.
 
 ---
 

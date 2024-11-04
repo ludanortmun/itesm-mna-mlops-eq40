@@ -1,1 +1,1 @@
-
+Este directorio contiene pruebas relacionadas a la experimentación con diferentes modelos y parámetros. La audiencia de estas pruebas son los científicos de datos y los desarrolladores de modelos de aprendizaje automático.

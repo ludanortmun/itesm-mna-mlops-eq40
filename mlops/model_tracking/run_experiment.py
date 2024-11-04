@@ -1,9 +1,9 @@
 import click
 import joblib
 import pandas as pd
+from mlops.model_tracking.load_params import load_params
+from mlops.model_tracking.train_and_eval_experiment import train_and_eval_experiment
 from sklearn.ensemble import RandomForestClassifier
-from load_params import load_params
-from train_and_eval_experiment import train_and_eval_experiment
 from sklearn.linear_model import LogisticRegression
 from sklearn.svm import SVC
 from sklearn.tree import DecisionTreeClassifier
@@ -37,6 +37,9 @@ def main(model_type, x_train_path, y_train_path, x_test_path, y_test_path, param
     y_test = pd.read_csv(y_test_path).values.ravel()
     params = load_params(params_path)
     model = __parse_model_type(model_type)
+
+    # Ensures that the model type is logged in MLflow
+    params['model_type'] = model_type
 
     model = train_and_eval_experiment(model, params, x_train, y_train, x_test, y_test, use_cv)
     joblib.dump(model, model_path)
