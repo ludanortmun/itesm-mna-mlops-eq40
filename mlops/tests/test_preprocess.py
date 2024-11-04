@@ -100,6 +100,10 @@ class PreprocessTest(unittest.TestCase):
         self.assertEqual(len(y_train), expected_train_rows)
         self.assertEqual(len(y_test), expected_test_rows)
 
+    def test_run_preprocessing_pipeline_with_invalid_path(self):
+        with self.assertRaises(FileNotFoundError):
+            run_preprocessing_pipeline('invalid_path.csv')
+    
 
 if __name__ == '__main__':
     unittest.main()
