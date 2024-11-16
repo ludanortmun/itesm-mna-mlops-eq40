@@ -42,7 +42,7 @@ class PreprocessTest(unittest.TestCase):
         # 7 numeric columns + (2*5) binary columns one-hot encoded
         expected_cols = 17
         x = pd.read_csv(sample_dataset_path)
-        x = preprocess(x)
+        x, _ = preprocess(x, x) # For the sake of this test, we will use the same dataset for both train and test
         self.assertEqual(x.shape, (sample_dataset_len, expected_cols))
 
     def test_preprocess_binary_cols_are_one_hot_encoded(self):
@@ -56,7 +56,7 @@ class PreprocessTest(unittest.TestCase):
             'smoking': [15,16]
         }
         x = pd.read_csv(sample_dataset_path)
-        x_transformed = preprocess(x)
+        x_transformed, _ = preprocess(x, x) # For the sake of this test, we will use the same dataset for both train and test
 
         for i in range(sample_dataset_len):
             for col, indexes in binary_col_indexes.items():
@@ -75,7 +75,7 @@ class PreprocessTest(unittest.TestCase):
         # These are the expected indexes of the numeric columns in the processed dataset
         numeric_col_indexes = [0,1,2,3,4,5,6]
         x = pd.read_csv(sample_dataset_path)
-        x_transformed = preprocess(x)
+        x_transformed, _ = preprocess(x, x) # For the sake of this test, we will use the same dataset for both train and test
 
         for i in range(sample_dataset_len):
             for col in numeric_col_indexes:

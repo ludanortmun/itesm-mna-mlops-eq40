@@ -16,13 +16,15 @@ def load(path):
     return x, y
 
 
-def preprocess(x):
+def preprocess(x_train, x_test):
     preprocessor = ColumnTransformer(
         transformers=[
             ('num', StandardScaler(), NUMERIC_COLS),
             ('cat', OneHotEncoder(), BINARY_COLS)])
 
-    return preprocessor.fit_transform(x)
+    x_train_preprocessed = preprocessor.fit_transform(x_train)
+    x_test_preprocessed = preprocessor.transform(x_test)
+    return x_train_preprocessed, x_test_preprocessed
 
 
 def split(x, y):
@@ -31,8 +33,8 @@ def split(x, y):
 
 def run_preprocessing_pipeline(data_path):
     X, y = load(data_path)
-    X = preprocess(X)
     x_train, x_test, y_train, y_test = split(X, y)
+    x_train, x_test = preprocess(x_train, x_test)
     return x_train, x_test, y_train, y_test
 
 
