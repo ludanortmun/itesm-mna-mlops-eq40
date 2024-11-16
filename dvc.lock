@@ -260,8 +260,8 @@ stages:
       size: 13793
     - path: mlops/split.py
       hash: md5
-      md5: 6db99411f237e9e80e72de5e7ed65724
-      size: 915
+      md5: 11f25c7d026ec017d114bbe780a3654c
+      size: 977
     outs:
     - path: data/processed/X_test.csv
       hash: md5
