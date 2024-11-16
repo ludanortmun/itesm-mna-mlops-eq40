@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Management</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1>Patient Management</h1>
+        <form id="patientForm" class="mb-4">
+            <div class="form-row">
+                <div class="form-group col-md-3">
+                    <label for="name">Name:</label>
+                    <input type="text" class="form-control" id="name" name="name" required>
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="age">Age:</label>
+                    <input type="number" class="form-control" id="age" name="age" required>
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="creatinine_phosphokinase">Creatinine Phosphokinase:</label>
+                    <input type="number" step="0.1" class="form-control" id="creatinine_phosphokinase" name="creatinine_phosphokinase" required>
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="ejection_fraction">Ejection Fraction:</label>
+                    <input type="number" class="form-control" id="ejection_fraction" name="ejection_fraction" required>
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="platelets">Platelets:</label>
+                    <input type="number" step="0.1" class="form-control" id="platelets" name="platelets" required>
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="serum_creatinine">Serum Creatinine:</label>
+                    <input type="number" step="0.1" class="form-control" id="serum_creatinine" name="serum_creatinine" required>
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="serum_sodium">Serum Sodium:</label>
+                    <input type="number" class="form-control" id="serum_sodium" name="serum_sodium" required>
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="heart_failure_time">Heart Failure Time:</label>
+                    <input type="datetime-local" class="form-control" id="heart_failure_time" name="heart_failure_time" required>
+                </div>
+                <div class="form-group col-md-3 form-check">
+                    <input type="checkbox" class="form-check-input" id="anaemia" name="anaemia">
+                    <label class="form-check-label" for="anaemia">Anaemia</label>
+                </div>
+                <div class="form-group col-md-3 form-check">
+                    <input type="checkbox" class="form-check-input" id="diabetes" name="diabetes">
+                    <label class="form-check-label" for="diabetes">Diabetes</label>
+                </div>
+                <div class="form-group col-md-3 form-check">
+                    <input type="checkbox" class="form-check-input" id="high_blood_pressure" name="high_blood_pressure">
+                    <label class="form-check-label" for="high_blood_pressure">High Blood Pressure</label>
+                </div>
+                <div class="form-group col-md-3 form-check">
+                    <input type="checkbox" class="form-check-input" id="smoking" name="smoking">
+                    <label class="form-check-label" for="smoking">Smoking</label>
+                </div>
+                <div class="form-group col-md-3">
+                    <label>Sex:</label>
+                    <div class="form-check">
+                        <input type="radio" class="form-check-input" id="male" name="sex" value="MALE" required>
+                        <label class="form-check-label" for="male">Male</label>
+                    </div>
+                    <div class="form-check">
+                        <input type="radio" class="form-check-input" id="female" name="sex" value="FEMALE" required>
+                        <label class="form-check-label" for="female">Female</label>
+                    </div>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Add Patient</button>
+        </form>
+        <h2>Patient List</h2>
+        <table class="table table-bordered" id="patientTable">
+            <thead class="thead-light">
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Age</th>
+                    <th>Anaemia</th>
+                    <th>Creatinine Phosphokinase</th>
+                    <th>Diabetes</th>
+                    <th>Ejection Fraction</th>
+                    <th>High Blood Pressure</th>
+                    <th>Platelets</th>
+                    <th>Sex</th>
+                    <th>Serum Creatinine</th>
+                    <th>Serum Sodium</th>
+                    <th>Smoking</th>
+                    <th>Heart Failure Time</th>
+                    <th>Is Death Predicted</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        const host = 'http://localhost:80';
+        const form = document.getElementById('patientForm');
+        const tableBody = document.getElementById('patientTable').querySelector('tbody');
+
+        form.addEventListener('submit', async (event) => {
+            event.preventDefault();
+
+            const formData = new FormData(form);
+
+            // Ensure that unchecked checkboxes are also sent with false as default.
+            const patientData = {
+                anaemia: false,
+                diabetes: false,
+                high_blood_pressure: false,
+                smoking: false
+            };
+            formData.forEach((value, key) => {
+                patientData[key] = value === 'on' ? true : value;
+            });
+
+            const response = await fetch(`${host}/patients/`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(patientData)
+            });
+
+            if (response.ok) {
+                const newPatient = await response.json();
+                addPatientToTable(newPatient);
+                form.reset();
+            } else {
+                alert('Failed to add patient');
+            }
+        });
+
+        async function fetchPatients() {
+            const response = await fetch(`${host}/patients/`);
+            if (response.ok) {
+                const patients = await response.json();
+                patients.forEach(addPatientToTable);
+            } else {
+                alert('Failed to fetch patients');
+            }
+        }
+
+        function addPatientToTable(patient) {
+            const row = document.createElement('tr');
+            Object.entries(patient).forEach(([key, value]) => {
+                const cell = document.createElement('td');
+                if (key === 'heart_failure_time') {
+                    const localTime = new Date(value).toLocaleString();
+                    cell.textContent = localTime;
+                } else if (['anaemia', 'diabetes', 'high_blood_pressure', 'smoking', 'is_death_predicted'].includes(key)) {
+                    cell.textContent = value ? 'Yes' : 'No';
+                } else {
+                    cell.textContent = value;
+                }
+                row.appendChild(cell);
+            });
+
+            tableBody.appendChild(row);
+        }
+
+        fetchPatients();
+    </script>
+</body>
+</html>
