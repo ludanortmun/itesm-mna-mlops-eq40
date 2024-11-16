@@ -2,3 +2,4 @@
 /model_rf_cv.pkl
 /model_dt.pkl
 /model_dt_cv.pkl
+/preprocessor.pkl
