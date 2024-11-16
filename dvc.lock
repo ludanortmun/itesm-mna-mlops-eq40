@@ -90,17 +90,17 @@ stages:
     cmd: python -m mlops.model_tracking.run_experiment --model_type random_forest
       --x_train_path data/processed/X_train.csv --y_train_path data/processed/y_train.csv
       --x_test_path data/processed/X_test.csv --y_test_path data/processed/y_test.csv
-      --params_path params/random_forest_cv.yaml --model_path models/model_rf_cv.pkl
-      --use_cv
+      --preprocessor_path models/preprocessor.pkl --params_path params/random_forest_cv.yaml
+      --model_path models/model_rf_cv.pkl --use_cv
     deps:
     - path: data/processed/X_test.csv
       hash: md5
-      md5: e8ea00926e0b1957f145a50e7601c65d
-      size: 10848
+      md5: 203c41842489c20c39a6f73e6d9cc22a
+      size: 2755
     - path: data/processed/X_train.csv
       hash: md5
-      md5: 61ff81b88099d2c9a0cb5ff75040d415
-      size: 43069
+      md5: b84fb8884706018450c7e0aefb86ec6b
+      size: 10570
     - path: data/processed/y_test.csv
       hash: md5
       md5: 7f54cc134e44081d387bfb6dc9dbc321
@@ -111,9 +111,13 @@ stages:
       size: 730
     - path: mlops/model_tracking
       hash: md5
-      md5: 628b59dd5605f6822d624576263c34aa.dir
-      size: 10919
+      md5: 6da33f1fd3206f718781ed99ef4fce11.dir
+      size: 11944
       nfiles: 10
+    - path: models/preprocessor.pkl
+      hash: md5
+      md5: 9125a5643b5a9016a14c4029135b41f4
+      size: 3478
     - path: params/random_forest_cv.yaml
       hash: md5
       md5: c874cb8a22f414397f97158866c4244a
@@ -127,16 +131,17 @@ stages:
     cmd: python -m mlops.model_tracking.run_experiment --model_type random_forest
       --x_train_path data/processed/X_train.csv --y_train_path data/processed/y_train.csv
       --x_test_path data/processed/X_test.csv --y_test_path data/processed/y_test.csv
-      --params_path params/random_forest.yaml --model_path models/model_rf.pkl
+      --preprocessor_path models/preprocessor.pkl --params_path params/random_forest.yaml
+      --model_path models/model_rf.pkl
     deps:
     - path: data/processed/X_test.csv
       hash: md5
-      md5: e8ea00926e0b1957f145a50e7601c65d
-      size: 10848
+      md5: 203c41842489c20c39a6f73e6d9cc22a
+      size: 2755
     - path: data/processed/X_train.csv
       hash: md5
-      md5: 61ff81b88099d2c9a0cb5ff75040d415
-      size: 43069
+      md5: b84fb8884706018450c7e0aefb86ec6b
+      size: 10570
     - path: data/processed/y_test.csv
       hash: md5
       md5: 7f54cc134e44081d387bfb6dc9dbc321
@@ -147,9 +152,13 @@ stages:
       size: 730
     - path: mlops/model_tracking
       hash: md5
-      md5: 628b59dd5605f6822d624576263c34aa.dir
-      size: 10919
+      md5: 6da33f1fd3206f718781ed99ef4fce11.dir
+      size: 11944
       nfiles: 10
+    - path: models/preprocessor.pkl
+      hash: md5
+      md5: 9125a5643b5a9016a14c4029135b41f4
+      size: 3478
     - path: params/random_forest.yaml
       hash: md5
       md5: b70a410369fcbf8a6359fa4e92e461c0
@@ -163,16 +172,17 @@ stages:
     cmd: python -m mlops.model_tracking.run_experiment --model_type decision_tree
       --x_train_path data/processed/X_train.csv --y_train_path data/processed/y_train.csv
       --x_test_path data/processed/X_test.csv --y_test_path data/processed/y_test.csv
-      --params_path params/decision_tree.yaml --model_path models/model_dt.pkl
+      --preprocessor_path models/preprocessor.pkl --params_path params/decision_tree.yaml
+      --model_path models/model_dt.pkl
     deps:
     - path: data/processed/X_test.csv
       hash: md5
-      md5: e8ea00926e0b1957f145a50e7601c65d
-      size: 10848
+      md5: 203c41842489c20c39a6f73e6d9cc22a
+      size: 2755
     - path: data/processed/X_train.csv
       hash: md5
-      md5: 61ff81b88099d2c9a0cb5ff75040d415
-      size: 43069
+      md5: b84fb8884706018450c7e0aefb86ec6b
+      size: 10570
     - path: data/processed/y_test.csv
       hash: md5
       md5: 7f54cc134e44081d387bfb6dc9dbc321
@@ -183,9 +193,13 @@ stages:
       size: 730
     - path: mlops/model_tracking
       hash: md5
-      md5: 628b59dd5605f6822d624576263c34aa.dir
-      size: 10919
+      md5: 6da33f1fd3206f718781ed99ef4fce11.dir
+      size: 11944
       nfiles: 10
+    - path: models/preprocessor.pkl
+      hash: md5
+      md5: 9125a5643b5a9016a14c4029135b41f4
+      size: 3478
     - path: params/decision_tree.yaml
       hash: md5
       md5: 31a021ddaca817886a02fa506ca8d0fe
@@ -199,17 +213,17 @@ stages:
     cmd: python -m mlops.model_tracking.run_experiment --model_type decision_tree
       --x_train_path data/processed/X_train.csv --y_train_path data/processed/y_train.csv
       --x_test_path data/processed/X_test.csv --y_test_path data/processed/y_test.csv
-      --params_path params/decision_tree_cv.yaml --model_path models/model_dt_cv.pkl
-      --use_cv
+      --preprocessor_path models/preprocessor.pkl --params_path params/decision_tree_cv.yaml
+      --model_path models/model_dt_cv.pkl --use_cv
     deps:
     - path: data/processed/X_test.csv
       hash: md5
-      md5: e8ea00926e0b1957f145a50e7601c65d
-      size: 10848
+      md5: 203c41842489c20c39a6f73e6d9cc22a
+      size: 2755
     - path: data/processed/X_train.csv
       hash: md5
-      md5: 61ff81b88099d2c9a0cb5ff75040d415
-      size: 43069
+      md5: b84fb8884706018450c7e0aefb86ec6b
+      size: 10570
     - path: data/processed/y_test.csv
       hash: md5
       md5: 7f54cc134e44081d387bfb6dc9dbc321
@@ -220,9 +234,13 @@ stages:
       size: 730
     - path: mlops/model_tracking
       hash: md5
-      md5: 628b59dd5605f6822d624576263c34aa.dir
-      size: 10919
+      md5: 6da33f1fd3206f718781ed99ef4fce11.dir
+      size: 11944
       nfiles: 10
+    - path: models/preprocessor.pkl
+      hash: md5
+      md5: 9125a5643b5a9016a14c4029135b41f4
+      size: 3478
     - path: params/decision_tree_cv.yaml
       hash: md5
       md5: c9aed46d8b1963b1deafc9ebcdd56809
@@ -232,3 +250,49 @@ stages:
       hash: md5
       md5: 7d1e55650014e21b4568ed3e3d1fc531
       size: 4
+  split_data:
+    cmd: python -m mlops.split data/processed/train_test_data.csv data/processed/X_train.csv
+      data/processed/X_test.csv data/processed/y_train.csv data/processed/y_test.csv
+    deps:
+    - path: data/processed/train_test_data.csv
+      hash: md5
+      md5: e8adddac5add6b339ebdf6ca62f634fa
+      size: 13793
+    - path: mlops/split.py
+      hash: md5
+      md5: 6db99411f237e9e80e72de5e7ed65724
+      size: 915
+    outs:
+    - path: data/processed/X_test.csv
+      hash: md5
+      md5: 203c41842489c20c39a6f73e6d9cc22a
+      size: 2755
+    - path: data/processed/X_train.csv
+      hash: md5
+      md5: b84fb8884706018450c7e0aefb86ec6b
+      size: 10570
+    - path: data/processed/y_test.csv
+      hash: md5
+      md5: 7f54cc134e44081d387bfb6dc9dbc321
+      size: 193
+    - path: data/processed/y_train.csv
+      hash: md5
+      md5: 8db873c0929dbfa478a6f9245521c2f0
+      size: 730
+  create_preprocessor:
+    cmd: python -m mlops.create_preprocessor --x_train_path data/processed/X_train.csv
+      --preprocessor_path models/preprocessor.pkl
+    deps:
+    - path: data/processed/X_train.csv
+      hash: md5
+      md5: b84fb8884706018450c7e0aefb86ec6b
+      size: 10570
+    - path: mlops/create_preprocessor.py
+      hash: md5
+      md5: b7b8dbdcd7dfffe561360ccf7a5397a3
+      size: 1179
+    outs:
+    - path: models/preprocessor.pkl
+      hash: md5
+      md5: 9125a5643b5a9016a14c4029135b41f4
+      size: 3478
