@@ -5,6 +5,7 @@ from sklearn.model_selection import GridSearchCV
 
 from mlops.evaluation.classification_metrics import evaluate_classification
 from mlops.model_tracking.connection import setup_default_mlflow_connection
+from mlops.survival_analysis import evaluate_survival_model
 
 
 def __exclude_model_type(params):
@@ -54,6 +55,13 @@ def _evaluate(model, x_test, y_test):
     mlflow.log_artifact('artifacts/confusion_matrix.png')
     plt.close()
 
+def evaluate_survival(model, x_test, y_test):
+    data = pd.concat([x_test, y_test], axis=1)
+    group_col = 'sex'  # Cambiar si necesitas otro grupo
+    event_col = 'DEATH_EVENT'
+    time_col = 'time'
+    cph = evaluate_survival_model(data, group_col, event_col, time_col)
+    return cph
 
 def train_and_eval_experiment(model, params, x_train, y_train, x_test, y_test, use_cv=False):
     setup_default_mlflow_connection()
@@ -64,4 +72,8 @@ def train_and_eval_experiment(model, params, x_train, y_train, x_test, y_test, u
             trained_model = _train(model, params, x_train, y_train)
 
         _evaluate(trained_model, x_test, y_test)
+        cph = evaluate_survival(model, x_test, y_test)
+        c_index = cph.concordance_index_
+        mlflow.log_metric('c_index', c_index)
+
         mlflow.sklearn.log_model(trained_model, 'model', input_example=x_train.head(1))
