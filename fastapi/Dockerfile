@@ -4,14 +4,14 @@ FROM python:3.11-slim
 # Working directory
 WORKDIR /app
 
-# Copy requirements.txt
-COPY requirements.txt .
 
 # Install dependencies
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install fastapi uvicorn scikit-learn pydantic
 
-# Copy app
-COPY . .
+# Copy the proyect
+COPY .. /app
+
+ENV PYTHONPATH=/app
 
 # Expose the port
 EXPOSE 8000
