@@ -1,0 +1,15 @@
+artifact_uri: file:///content/itesm-mna-mlops-eq40/mlruns/0/0670de3c522d47f5b0ad44a9ff8b71e2/artifacts
+end_time: 1731811193557
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 0670de3c522d47f5b0ad44a9ff8b71e2
+run_name: redolent-grouse-349
+run_uuid: 0670de3c522d47f5b0ad44a9ff8b71e2
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1731811193531
+status: 4
+tags: []
+user_id: root

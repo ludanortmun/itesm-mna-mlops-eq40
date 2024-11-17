@@ -1,0 +1,15 @@
+artifact_uri: file:///content/itesm-mna-mlops-eq40/mlruns/0/a236c9326d1f4fd1ade66ee0a625a0d2/artifacts
+end_time: 1731811369155
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: a236c9326d1f4fd1ade66ee0a625a0d2
+run_name: gaudy-kit-428
+run_uuid: a236c9326d1f4fd1ade66ee0a625a0d2
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1731811369132
+status: 4
+tags: []
+user_id: root

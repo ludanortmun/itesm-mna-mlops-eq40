@@ -1,0 +1,15 @@
+artifact_uri: file:///content/itesm-mna-mlops-eq40/mlruns/0/4484c6d109fe418993fe4f037aa1ee44/artifacts
+end_time: 1731813415832
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 4484c6d109fe418993fe4f037aa1ee44
+run_name: peaceful-worm-554
+run_uuid: 4484c6d109fe418993fe4f037aa1ee44
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1731813408124
+status: 3
+tags: []
+user_id: root

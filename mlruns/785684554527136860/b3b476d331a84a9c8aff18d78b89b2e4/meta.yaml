@@ -1,0 +1,15 @@
+artifact_uri: file:///content/itesm-mna-mlops-eq40/mlruns/785684554527136860/b3b476d331a84a9c8aff18d78b89b2e4/artifacts
+end_time: 1731813788609
+entry_point_name: ''
+experiment_id: '785684554527136860'
+lifecycle_stage: active
+run_id: b3b476d331a84a9c8aff18d78b89b2e4
+run_name: flawless-ray-848
+run_uuid: b3b476d331a84a9c8aff18d78b89b2e4
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1731813788588
+status: 4
+tags: []
+user_id: root

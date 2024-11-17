@@ -2,6 +2,36 @@ import pandas as pd
 from lifelines import KaplanMeierFitter, CoxPHFitter
 import matplotlib.pyplot as plt
 
+
+def prepare_data_for_cox(x, y):
+    """
+    Combina las características (X) y las etiquetas (y) en un único DataFrame
+    con las columnas necesarias para la regresión de Cox.
+    """
+    # Convertir x y y en DataFrames si no lo son
+    if not isinstance(x, pd.DataFrame):
+        x = pd.DataFrame(x, columns=[f"feature_{i}" for i in range(x.shape[1])])
+    if not isinstance(y, pd.DataFrame):
+        y = pd.DataFrame(y, columns=["death_event"])
+
+    # Combinar X (características) y y (etiquetas) en un único DataFrame
+    data = pd.concat([x, y], axis=1)
+
+    # Validar la existencia de las columnas necesarias
+    required_cols = ["time", "death_event"]
+    for col in required_cols:
+        if col not in data.columns:
+            raise ValueError(f"La columna requerida '{col}' no está presente en el dataset.")
+
+    # Eliminar filas con valores NaN en las columnas necesarias
+    if data[required_cols].isnull().any().any():
+        print("Se encontraron valores NaN. Eliminando filas con valores faltantes...")
+        data = data.dropna(subset=required_cols)
+
+    return data
+
+
+
 def create_kaplan_meier_chart(data, group_col, event_col, time_col):
     kmf = KaplanMeierFitter()
     for group, subset in data.groupby(group_col):
@@ -13,24 +43,25 @@ def create_kaplan_meier_chart(data, group_col, event_col, time_col):
     plt.show()
 
 def perform_cox_regression(data, event_col, time_col):
+    if time_col not in data.columns or data[time_col].isnull().any():
+        raise ValueError(f"La columna {time_col} no contiene datos válidos.")
     cph = CoxPHFitter()
     cph.fit(data, duration_col=time_col, event_col=event_col)
-    cph.print_summary()
     return cph
 
-def evaluate_survival_model(data, group_col, event_col, time_col):
-    """
-    Evalúa un modelo de supervivencia utilizando Kaplan-Meier y regresión de Cox.
 
-    :param data: DataFrame con los datos.
-    :param group_col: Nombre de la columna de agrupación (e.g., cohort).
-    :param event_col: Nombre de la columna de eventos (e.g., DEATH_EVENT).
-    :param time_col: Nombre de la columna de tiempo.
-    :return: Modelo de regresión de Cox ajustado.
-    """
+
+
+
+def evaluate_survival_model(data, group_col, event_col, time_col="time"):
+    print("Generando gráfico Kaplan-Meier...")
     create_kaplan_meier_chart(data, group_col, event_col, time_col)
+
+    print("Realizando regresión de Cox...")
     cph = perform_cox_regression(data, event_col, time_col)
+
     return cph
+
 
 
 def create_cohorts_from_cox(data, cox_model, time_col, threshold=0.5):

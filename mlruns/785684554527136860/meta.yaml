@@ -1,0 +1,6 @@
+artifact_location: file:///content/itesm-mna-mlops-eq40/mlruns/785684554527136860
+creation_time: 1731813788337
+experiment_id: '785684554527136860'
+last_update_time: 1731813788337
+lifecycle_stage: active
+name: cox_proportional_hazard_model_experiment

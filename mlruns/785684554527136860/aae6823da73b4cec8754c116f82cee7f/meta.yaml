@@ -1,0 +1,15 @@
+artifact_uri: file:///content/itesm-mna-mlops-eq40/mlruns/785684554527136860/aae6823da73b4cec8754c116f82cee7f/artifacts
+end_time: 1731813841520
+entry_point_name: ''
+experiment_id: '785684554527136860'
+lifecycle_stage: active
+run_id: aae6823da73b4cec8754c116f82cee7f
+run_name: bold-quail-776
+run_uuid: aae6823da73b4cec8754c116f82cee7f
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1731813841499
+status: 4
+tags: []
+user_id: root

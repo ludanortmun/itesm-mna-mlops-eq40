@@ -1,0 +1,15 @@
+artifact_uri: file:///content/itesm-mna-mlops-eq40/mlruns/0/c9785424e4444ce7b7429bdf1019d832/artifacts
+end_time: 1731810678586
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: c9785424e4444ce7b7429bdf1019d832
+run_name: efficient-shrike-561
+run_uuid: c9785424e4444ce7b7429bdf1019d832
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1731810678571
+status: 4
+tags: []
+user_id: root

@@ -1,0 +1,15 @@
+artifact_uri: file:///content/itesm-mna-mlops-eq40/mlruns/785684554527136860/060cab594b1f4898a9f8303dd40c0bb8/artifacts
+end_time: 1731813889939
+entry_point_name: ''
+experiment_id: '785684554527136860'
+lifecycle_stage: active
+run_id: 060cab594b1f4898a9f8303dd40c0bb8
+run_name: silent-dove-178
+run_uuid: 060cab594b1f4898a9f8303dd40c0bb8
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1731813885532
+status: 3
+tags: []
+user_id: root

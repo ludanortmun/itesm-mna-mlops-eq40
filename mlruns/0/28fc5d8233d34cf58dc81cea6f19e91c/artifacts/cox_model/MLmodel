@@ -1,0 +1,12 @@
+artifact_path: cox_model
+flavors:
+  sklearn:
+    code: null
+    pickled_model: model.pkl
+    serialization_format: cloudpickle
+    sklearn_version: 1.5.2
+mlflow_version: 2.17.2
+model_size_bytes: 29046
+model_uuid: a4a9a44a34ce417585db888805d5a829
+run_id: 28fc5d8233d34cf58dc81cea6f19e91c
+utc_time_created: '2024-11-17 02:29:11.175243'

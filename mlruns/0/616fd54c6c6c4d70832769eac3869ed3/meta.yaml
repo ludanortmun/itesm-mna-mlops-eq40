@@ -1,0 +1,15 @@
+artifact_uri: file:///content/itesm-mna-mlops-eq40/mlruns/0/616fd54c6c6c4d70832769eac3869ed3/artifacts
+end_time: 1731810801741
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 616fd54c6c6c4d70832769eac3869ed3
+run_name: overjoyed-deer-460
+run_uuid: 616fd54c6c6c4d70832769eac3869ed3
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1731810801726
+status: 4
+tags: []
+user_id: root

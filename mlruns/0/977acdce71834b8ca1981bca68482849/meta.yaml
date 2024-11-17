@@ -1,0 +1,15 @@
+artifact_uri: file:///content/itesm-mna-mlops-eq40/mlruns/0/977acdce71834b8ca1981bca68482849/artifacts
+end_time: 1731811705970
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 977acdce71834b8ca1981bca68482849
+run_name: stylish-bug-236
+run_uuid: 977acdce71834b8ca1981bca68482849
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1731811699801
+status: 3
+tags: []
+user_id: root

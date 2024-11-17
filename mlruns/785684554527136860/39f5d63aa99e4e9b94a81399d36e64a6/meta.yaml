@@ -1,0 +1,15 @@
+artifact_uri: file:///content/itesm-mna-mlops-eq40/mlruns/785684554527136860/39f5d63aa99e4e9b94a81399d36e64a6/artifacts
+end_time: 1731814578933
+entry_point_name: ''
+experiment_id: '785684554527136860'
+lifecycle_stage: active
+run_id: 39f5d63aa99e4e9b94a81399d36e64a6
+run_name: debonair-penguin-507
+run_uuid: 39f5d63aa99e4e9b94a81399d36e64a6
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1731814578905
+status: 4
+tags: []
+user_id: root

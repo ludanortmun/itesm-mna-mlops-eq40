@@ -1,0 +1,15 @@
+artifact_uri: file:///content/itesm-mna-mlops-eq40/mlruns/0/28fc5d8233d34cf58dc81cea6f19e91c/artifacts
+end_time: 1731810556322
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 28fc5d8233d34cf58dc81cea6f19e91c
+run_name: exultant-calf-872
+run_uuid: 28fc5d8233d34cf58dc81cea6f19e91c
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1731810551092
+status: 3
+tags: []
+user_id: root

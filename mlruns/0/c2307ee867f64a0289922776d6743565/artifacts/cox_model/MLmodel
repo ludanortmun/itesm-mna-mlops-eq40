@@ -1,0 +1,39 @@
+artifact_path: cox_model
+flavors:
+  python_function:
+    cloudpickle_version: 3.1.0
+    code: null
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: mlflow.pyfunc.model
+    python_model: python_model.pkl
+    python_version: 3.10.12
+    streamable: false
+mlflow_version: 2.17.2
+model_size_bytes: 32419
+model_uuid: c075a3b1c85a4d6b9a54b864ff79ee5d
+run_id: c2307ee867f64a0289922776d6743565
+saved_input_example_info:
+  artifact_path: input_example.json
+  pandas_orient: split
+  serving_input_path: serving_input_example.json
+  type: dataframe
+signature:
+  inputs: '[{"type": "double", "name": "num__age", "required": true}, {"type": "double",
+    "name": "num__creatinine_phosphokinase", "required": true}, {"type": "double",
+    "name": "num__ejection_fraction", "required": true}, {"type": "double", "name":
+    "num__platelets", "required": true}, {"type": "double", "name": "num__serum_creatinine",
+    "required": true}, {"type": "double", "name": "num__serum_sodium", "required":
+    true}, {"type": "double", "name": "num__time", "required": true}, {"type": "double",
+    "name": "cat__anaemia_0", "required": true}, {"type": "double", "name": "cat__anaemia_1",
+    "required": true}, {"type": "double", "name": "cat__diabetes_0", "required": true},
+    {"type": "double", "name": "cat__diabetes_1", "required": true}, {"type": "double",
+    "name": "cat__high_blood_pressure_0", "required": true}, {"type": "double", "name":
+    "cat__high_blood_pressure_1", "required": true}, {"type": "double", "name": "cat__sex_0",
+    "required": true}, {"type": "double", "name": "cat__sex_1", "required": true},
+    {"type": "double", "name": "cat__smoking_0", "required": true}, {"type": "double",
+    "name": "cat__smoking_1", "required": true}]'
+  outputs: '[{"type": "double", "required": true}]'
+  params: null
+utc_time_created: '2024-11-17 03:20:52.767532'

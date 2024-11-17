@@ -1,0 +1,15 @@
+artifact_uri: file:///content/itesm-mna-mlops-eq40/mlruns/0/0daaecb024904ce181edce81eca13c5b/artifacts
+end_time: 1731811420847
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 0daaecb024904ce181edce81eca13c5b
+run_name: ambitious-grub-313
+run_uuid: 0daaecb024904ce181edce81eca13c5b
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1731811420832
+status: 4
+tags: []
+user_id: root

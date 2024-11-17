@@ -1,0 +1,4 @@
+model_type: cox
+group_col: sex  # Columna de grupo para Kaplan-Meier
+event_col: death_event  # Columna de eventos para Cox
+time_col: time  # Columna de tiempo para Cox

@@ -1,0 +1,15 @@
+artifact_uri: file:///content/itesm-mna-mlops-eq40/mlruns/0/69f6b7acf70a42f7a1e3dad214d0a512/artifacts
+end_time: 1731810750805
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 69f6b7acf70a42f7a1e3dad214d0a512
+run_name: vaunted-turtle-781
+run_uuid: 69f6b7acf70a42f7a1e3dad214d0a512
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1731810750790
+status: 4
+tags: []
+user_id: root

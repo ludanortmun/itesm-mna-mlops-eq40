@@ -1,0 +1,15 @@
+artifact_uri: file:///content/itesm-mna-mlops-eq40/mlruns/0/c2307ee867f64a0289922776d6743565/artifacts
+end_time: 1731813658859
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: c2307ee867f64a0289922776d6743565
+run_name: enthused-worm-25
+run_uuid: c2307ee867f64a0289922776d6743565
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1731813652625
+status: 3
+tags: []
+user_id: root

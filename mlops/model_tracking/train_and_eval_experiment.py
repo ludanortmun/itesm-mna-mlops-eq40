@@ -5,7 +5,9 @@ from sklearn.model_selection import GridSearchCV
 
 from mlops.evaluation.classification_metrics import evaluate_classification
 from mlops.model_tracking.connection import setup_default_mlflow_connection
-from mlops.survival_analysis import evaluate_survival_model
+import pandas as pd
+from mlops.survival_analysis import prepare_data_for_cox, evaluate_survival_model
+
 
 
 def __exclude_model_type(params):
@@ -55,13 +57,26 @@ def _evaluate(model, x_test, y_test):
     mlflow.log_artifact('artifacts/confusion_matrix.png')
     plt.close()
 
+import pandas as pd
+
+
 def evaluate_survival(model, x_test, y_test):
-    data = pd.concat([x_test, y_test], axis=1)
-    group_col = 'sex'  # Cambiar si necesitas otro grupo
-    event_col = 'DEATH_EVENT'
-    time_col = 'time'
+    """
+    Prepara los datos para la regresión de Cox y evalúa el modelo de supervivencia.
+    """
+    # Preparar datos para la regresión de Cox
+    data = prepare_data_for_cox(x_test, y_test)
+
+    # Definir las columnas necesarias para la regresión de Cox
+    group_col = "sex"  # Ajustar según la agrupación deseada
+    event_col = "death_event"  # Columna del evento binario
+    time_col = "time"  # Columna de tiempo hasta el evento
+
+    # Evaluar el modelo de supervivencia
     cph = evaluate_survival_model(data, group_col, event_col, time_col)
     return cph
+
+
 
 def train_and_eval_experiment(model, params, x_train, y_train, x_test, y_test, use_cv=False):
     setup_default_mlflow_connection()

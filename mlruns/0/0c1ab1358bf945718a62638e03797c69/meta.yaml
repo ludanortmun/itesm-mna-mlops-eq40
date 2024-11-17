@@ -1,0 +1,15 @@
+artifact_uri: file:///content/itesm-mna-mlops-eq40/mlruns/0/0c1ab1358bf945718a62638e03797c69/artifacts
+end_time: 1731813346924
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 0c1ab1358bf945718a62638e03797c69
+run_name: auspicious-ox-244
+run_uuid: 0c1ab1358bf945718a62638e03797c69
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1731813346816
+status: 3
+tags: []
+user_id: root

@@ -1,0 +1,15 @@
+artifact_uri: file:///content/itesm-mna-mlops-eq40/mlruns/0/35509272ff7940a7b08759844e94d779/artifacts
+end_time: 1731811766638
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 35509272ff7940a7b08759844e94d779
+run_name: illustrious-cod-630
+run_uuid: 35509272ff7940a7b08759844e94d779
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1731811760441
+status: 3
+tags: []
+user_id: root

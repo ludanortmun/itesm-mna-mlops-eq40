@@ -1,0 +1,15 @@
+artifact_uri: file:///content/itesm-mna-mlops-eq40/mlruns/0/8fcaebad3b9d4212970c195e21c309b4/artifacts
+end_time: 1731813611162
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 8fcaebad3b9d4212970c195e21c309b4
+run_name: clumsy-stag-563
+run_uuid: 8fcaebad3b9d4212970c195e21c309b4
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1731813606236
+status: 3
+tags: []
+user_id: root

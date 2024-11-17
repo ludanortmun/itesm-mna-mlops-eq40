@@ -1,0 +1,15 @@
+artifact_uri: file:///content/itesm-mna-mlops-eq40/mlruns/0/339d065d80204818aa8f31ba546f8a51/artifacts
+end_time: 1731813331501
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 339d065d80204818aa8f31ba546f8a51
+run_name: honorable-quail-113
+run_uuid: 339d065d80204818aa8f31ba546f8a51
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1731813331418
+status: 4
+tags: []
+user_id: root

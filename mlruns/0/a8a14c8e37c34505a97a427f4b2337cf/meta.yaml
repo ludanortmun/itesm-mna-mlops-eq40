@@ -1,0 +1,15 @@
+artifact_uri: file:///content/itesm-mna-mlops-eq40/mlruns/0/a8a14c8e37c34505a97a427f4b2337cf/artifacts
+end_time: 1731811521137
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: a8a14c8e37c34505a97a427f4b2337cf
+run_name: capable-goose-903
+run_uuid: a8a14c8e37c34505a97a427f4b2337cf
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1731811521058
+status: 4
+tags: []
+user_id: root
