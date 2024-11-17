@@ -1,4 +1,5 @@
 # main.py
+from mlops.schema.prediction import InputpredictonModel, OutputPredictionModel
 import numpy as np
 import pandas as pd
 from fastapi import FastAPI, HTTPException
@@ -17,17 +18,12 @@ BINARY_COLS = ['anaemia', 'diabetes', 'high_blood_pressure', 'sex', 'smoking']
 ALL_COLS = NUMERIC_COLS + BINARY_COLS
 
 
-# Create InputData class
-class InputData(BaseModel):
-    features: Dict[str, float]
-
 
 app = FastAPI()
 
 
 @app.post("/predict")
-def predict(input_data: InputData):
-    print(input_data)
+def predict(input_data: InputpredictonModel, ):
     # Validation
     missing_cols = [col for col in ALL_COLS if col not in input_data.features]
     if missing_cols:
@@ -49,7 +45,8 @@ def predict(input_data: InputData):
 
     # Prediction
     prediction = model.predict(x)[0]
-    return {"prediction": int(prediction)}
+    output = OutputPredictionModel(predict=prediction)
+    return output
 
 
 @app.get("/")
