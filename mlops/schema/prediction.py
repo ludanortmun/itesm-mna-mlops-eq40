@@ -1,6 +1,7 @@
 
 from pydantic import BaseModel
 
+
 class FeautureModel(BaseModel):
     age: int
     anaemia: int
@@ -13,6 +14,7 @@ class FeautureModel(BaseModel):
     serum_sodium: float
     smoking: int
     time: float
+    sex: int
     
 
 class InputpredictonModel(BaseModel):
