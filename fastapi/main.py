@@ -1,39 +1,46 @@
 # main.py
 from fastapi import FastAPI, HTTPException
-from pydantic import BaseModel
-from typing import List
+from pydantic import BaseModel,  Field
+from typing import List, Dict
 from mlops.reproducibility.load_model import load_model  
-from sklearn.datasets import load_wine
 
-# Load the model using mlflow 
+
+# Load the model using mlflow ``
 RUN_ID = "bc8cf7556c204f698695eef704dfaf8b"
 model = load_model(RUN_ID)
 
-# Load the target names (class labels)
-data = load_wine()
-target_names = data.target_names
 
-# Define the input data format for prediction
-class WineData(BaseModel):
-    features: List[float]
+# List columns
+NUMERIC_COLS = ['age', 'creatinine_phosphokinase', 'ejection_fraction', 'platelets', 'serum_creatinine', 'serum_sodium', 'time']
+BINARY_COLS = ['anaemia', 'diabetes', 'high_blood_pressure', 'sex', 'smoking']
+ALL_COLS = NUMERIC_COLS + BINARY_COLS
 
-# Initialize FastAPI
+# Create InputData class
+class InputData(BaseModel):
+    features: Dict[str, float] 
+
 app = FastAPI()
 
-# Prediction endpoint
-@app.post("/predict")
-def predict(wine_data: WineData):
-    if len(wine_data.features) != model.n_features_in_:
+def predict(input_data: InputData):
+    # Validation
+    missing_cols = [col for col in ALL_COLS if col not in input_data.features]
+    if missing_cols:
         raise HTTPException(
             status_code=400,
-            detail=f"Input must contain {model.n_features_in_} features."
+            detail=f"Faltan las siguientes columnas en la entrada: {', '.join(missing_cols)}"
         )
-    # Predict
-    prediction = model.predict([wine_data.features])[0]
-    prediction_name = target_names[prediction]
-    return {"prediction": int(prediction), "prediction_name": prediction_name}
+    input_features = [input_data.features[col] for col in ALL_COLS]
+    
+    # Validate size
+    if len(input_features) != model.n_features_in_:
+        raise HTTPException(
+            status_code=400,
+            detail=f"El input debe contener {model.n_features_in_} características. Se recibieron {len(input_features)}."
+        )
+    # Prediction
+    prediction = model.predict([input_features])[0]
+    return {"prediction": int(prediction)}
 
-# Root endpoint
 @app.get("/")
 def read_root():
-    return {"message": "Wine classification model API"}
+    return {"message": "API de modelo de ML en funcionamiento"}
