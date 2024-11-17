@@ -25,7 +25,7 @@ app = FastAPI()
 @app.post("/predict")
 def predict(input_data: InputpredictonModel):
     # Our model expects a dataframe with named columns
-    x = pd.DataFrame([input_data.features])
+    x = pd.DataFrame([input_data.features.model_dump()])
 
     # Prediction
     prediction = model.predict(x)[0]
