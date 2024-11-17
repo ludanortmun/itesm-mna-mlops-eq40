@@ -23,23 +23,7 @@ app = FastAPI()
 
 
 @app.post("/predict")
-def predict(input_data: InputpredictonModel, ):
-    # Validation
-    missing_cols = [col for col in ALL_COLS if col not in input_data.features]
-    if missing_cols:
-        raise HTTPException(
-            status_code=400,
-            detail=f"Faltan las siguientes columnas en la entrada: {', '.join(missing_cols)}"
-        )
-    input_features = [input_data.features[col] for col in ALL_COLS]
-
-    # Validate size
-    if len(input_features) != model.n_features_in_:
-        raise HTTPException(
-            status_code=400,
-            detail=f"El input debe contener {model.n_features_in_} características. Se recibieron {len(input_features)}."
-        )
-
+def predict(input_data: InputpredictonModel):
     # Our model expects a dataframe with named columns
     x = pd.DataFrame([input_data.features])
 
