@@ -8,7 +8,7 @@ WORKDIR /app
 COPY .. /app
 
 # Install our library code
-RUN .venv/Scripts/activate
+
 RUN pip install -r requirements.txt
 RUN pip install mlops
 
