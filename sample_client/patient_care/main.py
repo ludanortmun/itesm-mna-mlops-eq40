@@ -71,7 +71,7 @@ def list_patients():
 
 def get_death_prediction(patient: Patient):
     url = "http://localhost:8000/predict"
-    data = {
+    data = {"features":{
         "age": patient.age,
         "anaemia": 1 if patient.anaemia else 0,
         "creatinine_phosphokinase": patient.creatinine_phosphokinase,
@@ -84,18 +84,20 @@ def get_death_prediction(patient: Patient):
         "serum_sodium": patient.serum_sodium,
         "smoking": 1 if patient.smoking else 0,
         "time": (datetime.now() - patient.heart_failure_time).days
-    }
+    }}
 
     # For now, we use a dummy prediction
-    return random.choice([True, False])
+    # return random.choice([True, False])
 
-    # response = requests.post(url, json=data)
-    #
-    # # Extract prediction from response
-    # if response.status_code == 200:
-    #     print("Prediction:", response.json())
-    # else:
-    #     print("Failed to get prediction:", response.status_code, response.text)
+    response = requests.post(url, json=data)
+
+    # Extract prediction from response
+    if response.status_code == 200:
+        print("Prediction:", response.json())
+        prediction = response.json().get("prediction")
+        return True if prediction == 1 else False
+    else:
+        print("Failed to get prediction:", response.status_code, response.text)
 
 
 # Mount the static files directory
