@@ -92,17 +92,6 @@ services:
       timeout: 10s
       retries: 3
 
-  fast_api:
-    restart: always 
-    build: ./fastapi
-    image: fastapi
-    container_name: fastapi_server
-    ports:
-      - "${FASTAPI_PORT}:8000"    
-    networks:
-      - backend
-    command: uvicorn main:app --host 0.0.0.0 --port 8000
-
 volumes:
   db_data:
   minio_data:

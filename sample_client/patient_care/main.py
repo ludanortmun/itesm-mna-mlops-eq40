@@ -86,9 +86,6 @@ def get_death_prediction(patient: Patient):
         "time": (datetime.now() - patient.heart_failure_time).days
     }}
 
-    # For now, we use a dummy prediction
-    # return random.choice([True, False])
-
     response = requests.post(url, json=data)
 
     # Extract prediction from response

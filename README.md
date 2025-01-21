@@ -31,6 +31,8 @@ ______________________________________________
 
 `docker-compose -f --env-file config.env up -d --build`
 
+NOTA: docker-compose solo inicializa el servidor de MLFlow. Para iniciar el servidor de predicciones, las instrucciones se encuentran más abajo.
+
 ## Ejecutar pruebas unitarias
 
 Las pruebas unitarias para el proyecto se encuentran en la carpeta de `mlops/tests`. Estas pruebas se enfocan en validar la implementación de nuestras librerías de Python; por ejemplo, validan nuestro _pipeline_ de preprocesamiento.
